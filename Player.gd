@@ -120,7 +120,7 @@ func _physics_process(_delta):
 			_sprite.play("fall")
 			
 		# double jump
-		if can_double_jump and not has_double_jumped and Input.is_action_just_pressed("move_up") and not dashing:
+		if can_double_jump and not has_double_jumped and Input.is_action_just_pressed("move_jump") and not dashing:
 			_flap_sound.play()
 			jump()
 			has_double_jumped = true
@@ -132,7 +132,7 @@ func _physics_process(_delta):
 			
 			# If the spacebar is released mid-jump, kill all vertical velocity
 			# by 90%. This gives the illusion of a "shorter" jump.
-			if Input.is_action_just_released("move_up") and velocity.y < 0:
+			if Input.is_action_just_released("move_jump") and velocity.y < 0:
 				velocity.y *= 0.1
 
 	# Successful dash conditions.

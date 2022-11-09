@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/interface/Bar_assets/Healthbar.png" type="Texture" id=2]
+[ext_resource path="res://assets/interface/Bar_assets/HealthBorder.png" type="Texture" id=4]
+[ext_resource path="res://assets/interface/LifeBar/LifeBar.gd" type="Script" id=6]
+
+[node name="LifeBar" type="HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 6 )
+
+[node name="LifeProgress" type="TextureProgress" parent="."]
+margin_right = 396.0
+margin_bottom = 53.0
+value = 60.0
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 2 )
