@@ -3,6 +3,7 @@
 extends KinematicBody2D
 
 # Child node imports.
+# !! IMPORTANT !! READ BELOW !!
 # you should never call the get_node() function inside the _process() function,
 # as it will actively search the path of each node for every single frame.
 # this needlessly wastes CPU, so it's better to store the results in variables
@@ -38,9 +39,9 @@ const DASH_PARTICLE_VELOCITY	= -8 		# reflects which direction player is facing
 const DASH_CD					= 0.6		# cooldown in seconds between dashes
 const DASH_DECEL				= 70		# how fast dash decelerates each frame
 const RESPAWN_CD				= 1.5		# cooldown in seconds to respawn
+const ATTACK_CD					= 0.25		# cooldown in seconds to attack
 
-const MAX_HP					= 100		# do i really need to explain what this represents?
-
+const MAX_HP					= 100		# self-explanatory
 
 # variables that are essential to gameplay
 var score						= 0					# goes up when collecting coins
@@ -49,18 +50,21 @@ var velocity 					= Vector2() 		# needed for physics engine
 var facing_right 				= true				# direction player is facing
 var dead						= false				# whether player is dead
 
+# MOVEMENT STATES
 var dashing						= false				# whether or not player is dashing
 var can_dash					= false				# whether or not dash is on cooldown
 var can_double_jump				= false				# whether double jump is enabled or not
 var has_double_jumped			= false				# if player has double jumped and hasn't touched ground
 var has_speed_boost				= false				# if speed boost is in effect
+var attacking					= false
 
 var dash_timer					= Timer.new()
 var respawn_timer				= Timer.new()
+var attack_timer				= Timer.new()
 
 
 func enable_dash():
-	# @Yong - GUI update should replace this line
+	# @Yong - GUI update should go here
 	can_dash = true
 	$Interface/BarContainers/DashBar/DashProgress.value = 100
 
@@ -77,6 +81,18 @@ func jump():
 	_jump_particle.restart()
 	_jump_sound.play()
 	velocity.y = JUMPIMPULSE
+	
+func start_attack():
+	_sprite.play("attack")
+	attacking = true
+	attack_timer.start()
+	
+func end_attack():
+	attacking = false
+	
+func apply_speed_boost():
+	if has_speed_boost:
+		movespeed = MOVESPEED_DEFAULT * SPEEDBOOST_MULT
 
 
 # Called when the node enters the scene tree for the first time.
@@ -95,11 +111,15 @@ func _ready():
 	respawn_timer.set_one_shot(true)
 	self.add_child(respawn_timer)
 	
+	attack_timer.connect("timeout", self, "end_attack")
+	attack_timer.wait_time = ATTACK_CD
+	attack_timer.set_one_shot(true)
+	self.add_child(attack_timer)
+	
 func _process(_delta):
 	pass
 
 func _physics_process(_delta):
-	# on floor
 	if is_on_floor():
 		# having an x-velocity high enough to move the player into the floor 
 		# each frame is needed for move_and_slide() to work properly.
@@ -114,10 +134,11 @@ func _physics_process(_delta):
 		
 	# mid-air conditions
 	if not is_on_floor():
-		if velocity.y <= 0:
-			_sprite.play("jump")
-		if velocity.y > 0:
-			_sprite.play("fall")
+		if not attacking:
+			if velocity.y <= 0:
+				_sprite.play("jump")
+			if velocity.y > 0:
+				_sprite.play("fall")
 			
 		# double jump
 		if can_double_jump and not has_double_jumped and Input.is_action_just_pressed("move_jump") and not dashing:
@@ -167,8 +188,9 @@ func _physics_process(_delta):
 	
 	# if moving right and not dashing
 	if Input.is_action_pressed("move_right") and not dashing and not dead:
-		if is_on_floor():
+		if is_on_floor() and not attacking:
 			_sprite.play("walk")
+		apply_speed_boost()
 		velocity.x = movespeed
 		
 		# flip sprite if necessary
@@ -178,8 +200,9 @@ func _physics_process(_delta):
 	
 	# if moving left and not dashing
 	elif Input.is_action_pressed("move_left") and not dashing and not dead:
-		if is_on_floor():
+		if is_on_floor() and not attacking:
 			_sprite.play("walk")
+		apply_speed_boost()
 		velocity.x = movespeed * -1
 		
 		# flip sprite if necessary... again
@@ -188,9 +211,13 @@ func _physics_process(_delta):
 			facing_right = false
 
 	# if on ground and standing still
-	elif not dashing and is_on_floor():
+	elif not dashing and is_on_floor() and not attacking:
 		velocity.x = 0
 		_sprite.play("idle")
+	
+	# attacking conditions
+	if Input.is_action_just_pressed("attack") and not dashing and not attacking:
+		start_attack()
 		
 	# runs if player is currently dashing, whether or not on ground
 	if dashing:
