@@ -3,26 +3,32 @@
 extends KinematicBody2D
 
 # Child node imports.
-# !! IMPORTANT !! READ BELOW !!
+# !! IMPORTANT !!
 # you should never call the get_node() function inside the _process() function,
 # as it will actively search the path of each node for every single frame.
 # this needlessly wastes CPU, so it's better to store the results in variables
 # if you will be referencing them constantly.
 onready var _sprite				= get_node("./AnimatedSprite")
+onready var _attack_area		= get_node("./AttackArea")
 onready var _dash_particle		= get_node("./Particle/DashParticle")
 onready var _jump_particle		= get_node("./Particle/JumpParticle")
 onready var _splash_particle	= get_node("./Particle/SplashParticle")
+onready var _attack_particle	= get_node("./Particle/AttackParticle")
+
 onready var _dash_sound			= get_node("./Sound/DashSound")
 onready var _jump_sound			= get_node("./Sound/JumpSound")
 onready var _splash_sound		= get_node("./Sound/SplashSound")
 onready var _flap_sound			= get_node("./Sound/FlapSound")
+onready var _sword_slash_sound	= get_node("./Sound/SwordSlashSound")
+onready var _gun_sound			= get_node("./Sound/GunSound")
+onready var _click_sound		= get_node("./Sound/ClickSound")
 
 # Item node imports
 onready var __feather			= get_node("../World/Items/Feather")
 onready var __boot				= get_node("../World/Items/Boot")
 onready var __coin				= get_node("../World/Items/Coin")
 
-# Constants that are essential to physics
+# Constants that are essential to physics and gameplay mechanics
 const ORIGIN_X					= 350		# player's starting x-coord
 const ORIGIN_Y					= 350		# player's starting y-coord
 
@@ -40,11 +46,13 @@ const DASH_CD					= 0.6		# cooldown in seconds between dashes
 const DASH_DECEL				= 70		# how fast dash decelerates each frame
 const RESPAWN_CD				= 1.5		# cooldown in seconds to respawn
 const ATTACK_CD					= 0.25		# cooldown in seconds to attack
+const SHOOT_CD					= 0.27			# cooldown in seconds to shoot gun
 
 const MAX_HP					= 100		# self-explanatory
 
 # variables that are essential to gameplay
 var score						= 0					# goes up when collecting coins
+var ammo						= 5					# how many bullets player can shoot
 var movespeed					= MOVESPEED_DEFAULT	# added to player's x-pos every frame
 var velocity 					= Vector2() 		# needed for physics engine
 var facing_right 				= true				# direction player is facing
@@ -55,14 +63,18 @@ var dashing						= false				# whether or not player is dashing
 var can_dash					= false				# whether or not dash is on cooldown
 var can_double_jump				= false				# whether double jump is enabled or not
 var has_double_jumped			= false				# if player has double jumped and hasn't touched ground
-var has_speed_boost				= false				# if speed boost is in effect
-var attacking					= false
+var has_wall_jump				= false
+var attacking					= false				# if player attack animation currently playing
+var shooting					= false				# if shooting animation currently playing
 
-var dash_timer					= Timer.new()
-var respawn_timer				= Timer.new()
-var attack_timer				= Timer.new()
+# timers
+var dash_timer					= Timer.new()		# dash cooldown timer
+var respawn_timer				= Timer.new()		# respawn delay timer
+var attack_timer				= Timer.new()		# attack cooldown timer
+var shoot_timer					= Timer.new()		# shooting cooldown timer
 
 
+# Helper functions
 func enable_dash():
 	# @Yong - GUI update should go here
 	can_dash = true
@@ -83,16 +95,28 @@ func jump():
 	velocity.y = JUMPIMPULSE
 	
 func start_attack():
+
 	_sprite.play("attack")
+	_sword_slash_sound.play()
+	_attack_particle.restart()
 	attacking = true
 	attack_timer.start()
 	
+func start_shoot():
+	if (ammo > 0):
+		_sprite.play("shoot")
+		_gun_sound.play()
+		shooting = true;
+		shoot_timer.start()
+		ammo -= 1
+	else:
+		_click_sound.play()
+	
 func end_attack():
 	attacking = false
-	
-func apply_speed_boost():
-	if has_speed_boost:
-		movespeed = MOVESPEED_DEFAULT * SPEEDBOOST_MULT
+
+func end_shoot():
+	shooting = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -116,6 +140,11 @@ func _ready():
 	attack_timer.set_one_shot(true)
 	self.add_child(attack_timer)
 	
+	shoot_timer.connect("timeout", self, "end_shoot")
+	shoot_timer.wait_time = SHOOT_CD
+	shoot_timer.set_one_shot(true)
+	self.add_child(shoot_timer)
+	
 func _process(_delta):
 	pass
 
@@ -129,22 +158,22 @@ func _physics_process(_delta):
 		has_double_jumped = false
 		
 	# successful jump conditions
-	if is_on_floor() and Input.is_action_just_pressed("move_jump") and not dashing:
-		jump()
+	if Input.is_action_just_pressed("move_jump") and not dashing:
+		if is_on_floor():
+			jump()
+		
+		elif can_double_jump and not has_double_jumped and not is_on_floor():
+			_flap_sound.play()
+			jump()
+			has_double_jumped = true
 		
 	# mid-air conditions
 	if not is_on_floor():
-		if not attacking:
+		if not attacking and not shooting:
 			if velocity.y <= 0:
 				_sprite.play("jump")
 			if velocity.y > 0:
 				_sprite.play("fall")
-			
-		# double jump
-		if can_double_jump and not has_double_jumped and Input.is_action_just_pressed("move_jump") and not dashing:
-			_flap_sound.play()
-			jump()
-			has_double_jumped = true
 		
 		# dashing disables gravity when active
 		if not dashing:
@@ -157,7 +186,7 @@ func _physics_process(_delta):
 				velocity.y *= 0.1
 
 	# Successful dash conditions.
-	if Input.is_action_just_pressed("move_dash") and can_dash and not dead:
+	if Input.is_action_just_pressed("move_dash") and can_dash and not dead and not attacking and not shooting:
 		_dash_sound.play()
 		
 		# ensures that dash particles travel in the same direction as player.
@@ -188,9 +217,8 @@ func _physics_process(_delta):
 	
 	# if moving right and not dashing
 	if Input.is_action_pressed("move_right") and not dashing and not dead:
-		if is_on_floor() and not attacking:
+		if is_on_floor() and not attacking and not shooting:
 			_sprite.play("walk")
-		apply_speed_boost()
 		velocity.x = movespeed
 		
 		# flip sprite if necessary
@@ -200,24 +228,28 @@ func _physics_process(_delta):
 	
 	# if moving left and not dashing
 	elif Input.is_action_pressed("move_left") and not dashing and not dead:
-		if is_on_floor() and not attacking:
+		if is_on_floor() and not attacking and not shooting:
 			_sprite.play("walk")
-		apply_speed_boost()
+
 		velocity.x = movespeed * -1
 		
 		# flip sprite if necessary... again
 		if facing_right:
 			_sprite.set_flip_h(true)
 			facing_right = false
+			
 
 	# if on ground and standing still
-	elif not dashing and is_on_floor() and not attacking:
+	elif not dashing and is_on_floor() and not attacking and not shooting:
 		velocity.x = 0
 		_sprite.play("idle")
 	
 	# attacking conditions
-	if Input.is_action_just_pressed("attack") and not dashing and not attacking:
+	if Input.is_action_just_pressed("attack") and not dashing and not attacking and not shooting:
 		start_attack()
+		
+	if Input.is_action_just_pressed("shoot") and not dashing and not attacking and not shooting:
+		start_shoot()
 		
 	# runs if player is currently dashing, whether or not on ground
 	if dashing:

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gold.png-0577bc3ea9c00e1bdc678fb267252460.stex"
+path="res://.import/pirate_sheet.png-b8f927ff3e049b3227e87a9f0455b845.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/item/gold.png"
-dest_files=[ "res://.import/gold.png-0577bc3ea9c00e1bdc678fb267252460.stex" ]
+source_file="res://assets/player/pirate_sheet.png"
+dest_files=[ "res://.import/pirate_sheet.png-b8f927ff3e049b3227e87a9f0455b845.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
