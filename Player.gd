@@ -8,6 +8,8 @@ extends KinematicBody2D
 # as it will actively search the path of each node for every single frame.
 # this needlessly wastes CPU, so it's better to store the results in variables
 # if you will be referencing them constantly.
+const bullet_path				= preload("res://Bullet.tscn")
+
 onready var _sprite				= get_node("./AnimatedSprite")
 onready var _attack_area		= get_node("./AttackArea")
 onready var _dash_particle		= get_node("./Particle/DashParticle")
@@ -49,10 +51,12 @@ const ATTACK_CD					= 0.25		# cooldown in seconds to attack
 const SHOOT_CD					= 0.27			# cooldown in seconds to shoot gun
 
 const MAX_HP					= 100		# self-explanatory
+const DEFAULT_AMMO				= 5
+const MAX_AMMO					= 20
 
 # variables that are essential to gameplay
 var score						= 0					# goes up when collecting coins
-var ammo						= 5					# how many bullets player can shoot
+var ammo						= DEFAULT_AMMO		# how many bullets player can shoot
 var movespeed					= MOVESPEED_DEFAULT	# added to player's x-pos every frame
 var velocity 					= Vector2() 		# needed for physics engine
 var facing_right 				= true				# direction player is facing
@@ -87,6 +91,7 @@ func respawn():
 	position.y = ORIGIN_Y
 	dead = false
 	velocity.y = 0
+	ammo = DEFAULT_AMMO
 	$Interface/BarContainers/LifeBar/LifeProgress.value = 100
 	
 func jump():
@@ -95,25 +100,41 @@ func jump():
 	velocity.y = JUMPIMPULSE
 	
 func start_attack():
-
+	attacking = true
+	
+	if not facing_right:
+		_attack_area.position.x = -38
+	else:
+		_attack_area.position.x = 38
+	_attack_area.visible = true
+	
 	_sprite.play("attack")
 	_sword_slash_sound.play()
 	_attack_particle.restart()
-	attacking = true
 	attack_timer.start()
 	
 func start_shoot():
 	if (ammo > 0):
+		shooting = true;
 		_sprite.play("shoot")
 		_gun_sound.play()
-		shooting = true;
 		shoot_timer.start()
 		ammo -= 1
+		
+		var bullet = bullet_path.instance()
+		get_parent().add_child(bullet)
+		bullet.position = $Position2D.global_position
+		
+		if not facing_right:
+			bullet.direction = -1
+	
+
 	else:
 		_click_sound.play()
 	
 func end_attack():
 	attacking = false
+	_attack_area.visible = false
 
 func end_shoot():
 	shooting = false
@@ -124,6 +145,7 @@ func _ready():
 	respawn()
 	score = 0
 	_sprite.play("idle")
+	_attack_area.visible = false
 	
 	dash_timer.connect("timeout", self, "enable_dash")
 	dash_timer.wait_time = DASH_CD
@@ -286,23 +308,32 @@ func _physics_process(_delta):
 		
 	velocity = move_and_slide(velocity, Vector2.UP)
 
-func _on_Feather_body_entered(_body):
-	__feather.queue_free()
+
+# collision detections.
+# trying to detect collisions across different scenes is an absolute NIGHTMARE,
+# and google offered no help at all. This is the method I came up with:
+# - Each object has its own function for when the player enters
+# - said object will perform necessary functions for itself (like despawning)
+# - said object will then call these functions below from the player, depending
+# - on what object the player entered.
+
+# I tried using signals to do this, but it was buggy at best and was much harder
+# to wrap one's head around.
+func feather_entered():
 	_jump_particle.restart()
 	_flap_sound.play()
 	can_double_jump = true
 
-func _on_Boot_body_entered(_body):
+func boot_entered():
 	$Interface/BarContainers/DashBar/DashProgress.value = 100
-	__boot.queue_free()
 	_jump_particle.restart()
 	_dash_sound.play()
 	can_dash = true
 
-func _on_Coin_body_entered(body):
+func coin_entered():
 	score = score + 1
 	$Interface/CoinCounter/Number.text = str(score)
 
-func _on_BigCoin_body_entered(body):
+func big_coin_entered():
 	score = score + 5
 	$Interface/CoinCounter/Number.text = str(score)

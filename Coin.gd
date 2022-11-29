@@ -17,6 +17,9 @@ func _ready():
 	
 func _on_Coin_body_entered(body):
 	# disable hitbox immediately, play fade animation and then despawn once done
+	if body.is_in_group("Player"):
+		body.coin_entered()
+		
 	$AnimatedSprite.play("fade")
 	$PickupSound.play()
 	remove_child($CollisionShape2D)
