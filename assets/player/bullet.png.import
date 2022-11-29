@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bricks.db32.png-11b977b8896437285e115baafc9d9f5c.stex"
+path="res://.import/bullet.png-8da1e88c93bd8e3ec450232719155ca0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/world/bricks.db32.png"
-dest_files=[ "res://.import/bricks.db32.png-11b977b8896437285e115baafc9d9f5c.stex" ]
+source_file="res://assets/player/bullet.png"
+dest_files=[ "res://.import/bullet.png-8da1e88c93bd8e3ec450232719155ca0.stex" ]
 
 [params]
 

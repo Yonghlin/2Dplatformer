@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bricks.db32.png-11b977b8896437285e115baafc9d9f5c.stex"
+path="res://.import/swoosh.png-6103749cbe98a207e71fa69d4363f6ea.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/world/bricks.db32.png"
-dest_files=[ "res://.import/bricks.db32.png-11b977b8896437285e115baafc9d9f5c.stex" ]
+source_file="res://assets/player/swoosh.png"
+dest_files=[ "res://.import/swoosh.png-6103749cbe98a207e71fa69d4363f6ea.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

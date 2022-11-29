@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/flap2.wav-e50779b2f7c044f084a974a32f1b2fb2.sample"
+path="res://.import/click.wav-9dba986dde1a116f7aacc0cdc9020df6.sample"
 
 [deps]
 
-source_file="res://assets/sound/flap2.wav"
-dest_files=[ "res://.import/flap2.wav-e50779b2f7c044f084a974a32f1b2fb2.sample" ]
+source_file="res://assets/player/sound/click.wav"
+dest_files=[ "res://.import/click.wav-9dba986dde1a116f7aacc0cdc9020df6.sample" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/flap2.wav-e50779b2f7c044f084a974a32f1b2fb2.sample"
+path="res://.import/thud.wav-e08e90d03448700ef70cf6ab5157322c.sample"
 
 [deps]
 
-source_file="res://assets/sound/flap2.wav"
-dest_files=[ "res://.import/flap2.wav-e50779b2f7c044f084a974a32f1b2fb2.sample" ]
+source_file="res://assets/sound/thud.wav"
+dest_files=[ "res://.import/thud.wav-e08e90d03448700ef70cf6ab5157322c.sample" ]
 
 [params]
 

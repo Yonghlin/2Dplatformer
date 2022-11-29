@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bricks.db32.png-11b977b8896437285e115baafc9d9f5c.stex"
+path="res://.import/pirate_animations3.png-4ff095c163760c7d7339d16110a331b6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/world/bricks.db32.png"
-dest_files=[ "res://.import/bricks.db32.png-11b977b8896437285e115baafc9d9f5c.stex" ]
+source_file="res://assets/player/pirate_animations3.png"
+dest_files=[ "res://.import/pirate_animations3.png-4ff095c163760c7d7339d16110a331b6.stex" ]
 
 [params]
 

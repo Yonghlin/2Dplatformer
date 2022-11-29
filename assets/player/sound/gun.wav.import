@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/flap2.wav-e50779b2f7c044f084a974a32f1b2fb2.sample"
+path="res://.import/gun.wav-0f65b12795405ae0be4cf8f9b4a0056b.sample"
 
 [deps]
 
-source_file="res://assets/sound/flap2.wav"
-dest_files=[ "res://.import/flap2.wav-e50779b2f7c044f084a974a32f1b2fb2.sample" ]
+source_file="res://assets/player/sound/gun.wav"
+dest_files=[ "res://.import/gun.wav-0f65b12795405ae0be4cf8f9b4a0056b.sample" ]
 
 [params]
 

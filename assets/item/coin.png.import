@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bricks.db32.png-11b977b8896437285e115baafc9d9f5c.stex"
+path="res://.import/coin.png-20ce97a9b95c8ac1b41f7253fdddfddc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/world/bricks.db32.png"
-dest_files=[ "res://.import/bricks.db32.png-11b977b8896437285e115baafc9d9f5c.stex" ]
+source_file="res://assets/item/coin.png"
+dest_files=[ "res://.import/coin.png-20ce97a9b95c8ac1b41f7253fdddfddc.stex" ]
 
 [params]
 

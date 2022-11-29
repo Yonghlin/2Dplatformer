@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/flap2.wav-e50779b2f7c044f084a974a32f1b2fb2.sample"
+path="res://.import/coin.wav-828352c8d1a7c1b294312f06e5cd77f4.sample"
 
 [deps]
 
-source_file="res://assets/sound/flap2.wav"
-dest_files=[ "res://.import/flap2.wav-e50779b2f7c044f084a974a32f1b2fb2.sample" ]
+source_file="res://assets/sound/coin.wav"
+dest_files=[ "res://.import/coin.wav-828352c8d1a7c1b294312f06e5cd77f4.sample" ]
 
 [params]
 
