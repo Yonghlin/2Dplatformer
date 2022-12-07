@@ -10,6 +10,46 @@
 [ext_resource path="res://assets/sound/flap2.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/interface/Interface.tscn" type="PackedScene" id=10]
 
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 60, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 6 )
+region = Rect2( 20, 60, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 6 )
+region = Rect2( 40, 60, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 6 )
+region = Rect2( 60, 60, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 20, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 6 )
+region = Rect2( 20, 20, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 6 )
+region = Rect2( 40, 20, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 6 )
+region = Rect2( 60, 20, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 6 )
+region = Rect2( 20, 40, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 6 )
+region = Rect2( 40, 40, 20, 20 )
+
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 20, 20 )
@@ -34,48 +74,23 @@ region = Rect2( 40, 20, 20, 20 )
 atlas = ExtResource( 6 )
 region = Rect2( 60, 20, 20, 20 )
 
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 6 )
-region = Rect2( 0, 20, 20, 20 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 6 )
-region = Rect2( 20, 20, 20, 20 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 6 )
-region = Rect2( 40, 20, 20, 20 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 6 )
-region = Rect2( 60, 20, 20, 20 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 6 )
-region = Rect2( 0, 60, 20, 20 )
-
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 6 )
-region = Rect2( 20, 60, 20, 20 )
-
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 6 )
-region = Rect2( 40, 60, 20, 20 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 6 )
-region = Rect2( 60, 60, 20, 20 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 6 )
-region = Rect2( 20, 40, 20, 20 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 6 )
-region = Rect2( 40, 40, 20, 20 )
-
 [sub_resource type="SpriteFrames" id=17]
 animations = [ {
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": false,
+"name": "attack",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": true,
+"name": "dash",
+"speed": 25.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ) ],
+"loop": false,
+"name": "fall",
+"speed": 10.0
+}, {
 "frames": [ SubResource( 1 ) ],
 "loop": true,
 "name": "idle",
@@ -89,21 +104,6 @@ animations = [ {
 "frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "walk",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
-"loop": true,
-"name": "dash",
-"speed": 25.0
-}, {
-"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
-"loop": false,
-"name": "attack",
-"speed": 4.0
-}, {
-"frames": [ SubResource( 15 ), SubResource( 16 ) ],
-"loop": false,
-"name": "fall",
 "speed": 10.0
 } ]
 
@@ -293,6 +293,6 @@ margin_left = -97.117
 margin_top = -112.026
 margin_right = 276.883
 margin_bottom = 48.974
+
 [connection signal="health_changed" from="Health" to="." method="_on_Health_health_changed"]
 [connection signal="coins_changed" from="Interface" to="." method="_on_Interface_coins_changed"]
-[connection signal="dash_changed" from="Interface" to="Interface/BarContainers/DashBar" method="_on_Interface_dash_changed"]

@@ -15,3 +15,8 @@ margin_bottom = 53.0
 value = 60.0
 texture_under = ExtResource( 4 )
 texture_progress = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 400.0
+margin_right = 400.0
+margin_bottom = 53.0

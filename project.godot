@@ -18,6 +18,10 @@ config/name="proj4"
 run/main_scene="res://Node2D.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Global.gd"
+
 [input]
 
 ui_left={

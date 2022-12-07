@@ -62,7 +62,7 @@ var respawn_timer				= Timer.new()
 func enable_dash():
 	# @Yong - GUI update should replace this line
 	can_dash = true
-	$Interface/BarContainers/DashBar/DashProgress.value = 100
+	$Interface/CanvasLayer/DashProgress.value = 100
 
 func respawn():
 	facing_right = true
@@ -71,7 +71,7 @@ func respawn():
 	position.y = ORIGIN_Y
 	dead = false
 	velocity.y = 0
-	$Interface/BarContainers/LifeBar/LifeProgress.value = 100
+	#$Interface/BarContainers/LifeBar/LifeProgress.value = 100
 	
 func jump():
 	_jump_particle.restart()
@@ -159,7 +159,7 @@ func _physics_process(_delta):
 			velocity.x = -DASHIMPULSE
 		
 		can_dash = false
-		$Interface/BarContainers/DashBar/DashProgress.value = 0
+		$Interface/CanvasLayer/DashProgress.value = 0
 		dash_timer.start()
 	
 	# There's probably a way to do this next part without needing 2 nearly
@@ -221,7 +221,7 @@ func _physics_process(_delta):
 			_splash_particle.restart()
 			_splash_sound.play()
 			dead = true
-			$Interface/BarContainers/LifeBar/LifeProgress.value = 0
+			Global.lose_life()
 			respawn_timer.start()
 		velocity.y *= WATER_SPEED
 		
@@ -234,7 +234,7 @@ func _on_Feather_body_entered(_body):
 	can_double_jump = true
 
 func _on_Boot_body_entered(_body):
-	$Interface/BarContainers/DashBar/DashProgress.value = 100
+	$Interface/CanvasLayer/DashProgress.value = 100
 	__boot.queue_free()
 	_jump_particle.restart()
 	_dash_sound.play()
@@ -242,8 +242,8 @@ func _on_Boot_body_entered(_body):
 
 func _on_Coin_body_entered(body):
 	score = score + 1
-	$Interface/CoinCounter/Number.text = str(score)
+	$Interface/CanvasLayer/CoinCounter/Number.text = str(score)
 
 func _on_BigCoin_body_entered(body):
 	score = score + 5
-	$Interface/CoinCounter/Number.text = str(score)
+	$Interface/CanvasLayer/CoinCounter/Number.text = str(score)

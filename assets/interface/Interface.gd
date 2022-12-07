@@ -1,14 +1,10 @@
 extends Control
 
-signal health_changed(health)
-signal coins_changed(count)
-signal dash_changed(dash)
+func _ready():
+	load_hearts()
+	Global.hud = self
 
-func _on_Health_health_changed(health):
-	emit_signal("health_changed", health)
-	
-func _on_Purse_coins_changed(count):
-	emit_signal("coins_changed", count)
-
-func _on_Dash_dash_changed(dash):
-	emit_signal("dash_changed", dash)
+func load_hearts():
+	$CanvasLayer/HeartsFull.rect_size.x = Global.lives * 53
+	$CanvasLayer/HeartsEmpty.rect_size.x = (Global.max_lives - Global.lives) * 53
+	$CanvasLayer/HeartsEmpty.rect_position.x = $CanvasLayer/HeartsFull.rect_position.x + $CanvasLayer/HeartsFull.rect_size.x * $CanvasLayer/HeartsFull.rect_scale.x

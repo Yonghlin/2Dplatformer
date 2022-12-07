@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://assets/interface/Bar_assets/HealthBorder.png" type="Texture" id=1]
-[ext_resource path="res://assets/interface/Bar_assets/Healthbar.png" type="Texture" id=2]
+[ext_resource path="res://assets/interface/LifeBar/hud_heartFull.png" type="Texture" id=1]
+[ext_resource path="res://assets/interface/LifeBar/hud_heartEmpty.png" type="Texture" id=2]
 [ext_resource path="res://assets/interface/Bar_assets/EnergyBorder.png" type="Texture" id=3]
 [ext_resource path="res://assets/interface/Bar_assets/EnergyBar.png" type="Texture" id=4]
 [ext_resource path="res://assets/interface/Bar_assets/Comfortaa-Bold.ttf" type="DynamicFontData" id=5]
@@ -10,7 +10,6 @@
 [ext_resource path="res://assets/interface/Bar_assets/Label.png" type="Texture" id=8]
 [ext_resource path="res://assets/interface/Interface.gd" type="Script" id=9]
 [ext_resource path="res://assets/interface/CoinCounter.gd" type="Script" id=10]
-[ext_resource path="res://assets/interface/LifeBar.gd" type="Script" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -21,47 +20,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 9 )
 
-[node name="BarContainers" type="VBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_scale = Vector2( 0.511875, 0.539955 )
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="LifeBar" type="HBoxContainer" parent="BarContainers"]
-margin_right = 396.0
-margin_bottom = 53.0
-alignment = 1
-script = ExtResource( 11 )
-
-[node name="LifeProgress" type="TextureProgress" parent="BarContainers/LifeBar"]
-margin_right = 396.0
-margin_bottom = 53.0
-value = 50.0
-texture_under = ExtResource( 1 )
-texture_progress = ExtResource( 2 )
-
-[node name="DashBar" type="HBoxContainer" parent="BarContainers"]
-margin_top = 57.0
-margin_right = 396.0
-margin_bottom = 97.0
-alignment = 1
-
-[node name="DashProgress" type="TextureProgress" parent="BarContainers/DashBar"]
-margin_left = 74.0
-margin_right = 322.0
-margin_bottom = 40.0
-texture_under = ExtResource( 3 )
-texture_progress = ExtResource( 4 )
-
-[node name="CoinCounter" type="NinePatchRect" parent="."]
-margin_left = 58.0
-margin_top = -39.0
-margin_right = 192.0
-margin_bottom = 12.0
+[node name="CoinCounter" type="NinePatchRect" parent="CanvasLayer"]
+margin_left = 912.0
+margin_top = 19.0
+margin_right = 1046.0
+margin_bottom = 70.0
 rect_scale = Vector2( 0.666147, 0.642408 )
 texture = ExtResource( 8 )
 script = ExtResource( 10 )
 
-[node name="TextureRect" type="TextureRect" parent="CoinCounter"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CoinCounter"]
 margin_left = 65.0
 margin_top = -4.0
 margin_right = 128.0
@@ -69,7 +39,7 @@ margin_bottom = 57.0
 texture = ExtResource( 7 )
 expand = true
 
-[node name="Number" type="Label" parent="CoinCounter"]
+[node name="Number" type="Label" parent="CanvasLayer/CoinCounter"]
 margin_left = 17.0
 margin_top = 10.0
 margin_right = 58.0
@@ -78,5 +48,25 @@ theme = ExtResource( 6 )
 custom_fonts/font = SubResource( 1 )
 text = "0"
 
-[connection signal="coins_changed" from="." to="CoinCounter" method="_on_Interface_coins_changed"]
-[connection signal="health_changed" from="." to="BarContainers/LifeBar" method="_on_Interface_health_changed"]
+[node name="HeartsFull" type="TextureRect" parent="CanvasLayer"]
+margin_left = 40.0
+margin_right = 199.0
+margin_bottom = 45.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 2
+
+[node name="HeartsEmpty" type="TextureRect" parent="CanvasLayer"]
+margin_left = 40.0
+margin_right = 199.0
+margin_bottom = 45.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 2
+
+[node name="DashProgress" type="TextureProgress" parent="CanvasLayer"]
+margin_top = 48.0
+margin_right = 248.0
+margin_bottom = 88.0
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
