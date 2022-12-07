@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/interface/Bar_assets/EnergyBar.png" type="Texture" id=4]
 [ext_resource path="res://assets/interface/Bar_assets/Comfortaa-Bold.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/interface/default_theme.tres" type="Theme" id=6]
-[ext_resource path="res://assets/item/gold.png" type="Texture" id=7]
+[ext_resource path="res://assets/interface/coin-icon.png" type="Texture" id=7]
 [ext_resource path="res://assets/interface/Bar_assets/Label.png" type="Texture" id=8]
 [ext_resource path="res://assets/interface/Interface.gd" type="Script" id=9]
 [ext_resource path="res://assets/interface/CoinCounter.gd" type="Script" id=10]
@@ -62,10 +62,10 @@ texture = ExtResource( 8 )
 script = ExtResource( 10 )
 
 [node name="TextureRect" type="TextureRect" parent="CoinCounter"]
-margin_left = 65.0
-margin_top = -4.0
-margin_right = 128.0
-margin_bottom = 57.0
+margin_left = 74.288
+margin_top = -11.6146
+margin_right = 148.288
+margin_bottom = 62.3854
 texture = ExtResource( 7 )
 expand = true
 
@@ -77,6 +77,5 @@ margin_bottom = 46.0
 theme = ExtResource( 6 )
 custom_fonts/font = SubResource( 1 )
 text = "0"
-
 [connection signal="coins_changed" from="." to="CoinCounter" method="_on_Interface_coins_changed"]
 [connection signal="health_changed" from="." to="BarContainers/LifeBar" method="_on_Interface_health_changed"]

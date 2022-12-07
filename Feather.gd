@@ -1,14 +1,8 @@
 extends Area2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+func _on_Feather_body_entered(body):
+	queue_free()
+	if body.is_in_group("Player"):
+		body.feather_entered()
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-	
-func _process(delta):
-	pass
