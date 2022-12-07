@@ -1,0 +1,180 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://assets/game background.png" type="Texture" id=1]
+[ext_resource path="res://assets/keyboard_keys/sprites/g14228.png" type="Texture" id=2]
+[ext_resource path="res://assets/keyboard_keys/sprites/g14253.png" type="Texture" id=3]
+[ext_resource path="res://assets/keyboard_keys/sprites/g14134.png" type="Texture" id=4]
+[ext_resource path="res://assets/keyboard_keys/sprites/g14209.png" type="Texture" id=5]
+[ext_resource path="res://assets/shift_button.png" type="Texture" id=6]
+[ext_resource path="res://assets/keyboard_keys/sprites/g14216.png" type="Texture" id=7]
+[ext_resource path="res://assets/ConnectionII.otf" type="DynamicFontData" id=8]
+[ext_resource path="res://assets/music/Theme.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/item/feather.png" type="Texture" id=10]
+[ext_resource path="res://assets/item/boot.png" type="Texture" id=11]
+[ext_resource path="res://assets/item/gold.png" type="Texture" id=12]
+[ext_resource path="res://assets/340.png" type="Texture" id=13]
+[ext_resource path="res://Help Screen.gd" type="Script" id=14]
+[ext_resource path="res://assets/13-138913_pointer-clipart-mouse-click-right-click-mouse-icon.png" type="Texture" id=15]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 14 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 2048.0
+margin_bottom = 1194.0
+rect_scale = Vector2( 0.497743, 0.509679 )
+texture = ExtResource( 1 )
+
+[node name="WASD sprites" type="Node" parent="."]
+
+[node name="A - left" type="Sprite" parent="WASD sprites"]
+position = Vector2( 122, 107 )
+scale = Vector2( 0.480836, 0.453449 )
+texture = ExtResource( 4 )
+
+[node name="D - right" type="Sprite" parent="WASD sprites"]
+position = Vector2( 197, 107 )
+scale = Vector2( 0.480836, 0.453449 )
+texture = ExtResource( 5 )
+
+[node name="S - nothing" type="Sprite" parent="WASD sprites"]
+position = Vector2( 159, 107 )
+scale = Vector2( 0.480836, 0.453449 )
+texture = ExtResource( 7 )
+
+[node name="W - jump" type="Sprite" parent="WASD sprites"]
+position = Vector2( 159, 71 )
+scale = Vector2( 0.480836, 0.453449 )
+texture = ExtResource( 2 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WASD sprites"]
+margin_left = 310.0
+margin_top = 80.0
+margin_right = 572.0
+margin_bottom = 138.0
+custom_fonts/normal_font = SubResource( 1 )
+text = "-	Use WASD to move around"
+
+[node name="shift - dash" type="Sprite" parent="WASD sprites"]
+position = Vector2( 159, 153 )
+scale = Vector2( 1.79324, 1.66062 )
+texture = ExtResource( 6 )
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="WASD sprites"]
+margin_left = 311.0
+margin_top = 143.0
+margin_right = 446.0
+margin_bottom = 176.0
+custom_fonts/normal_font = SubResource( 1 )
+text = "-	Dash "
+
+[node name="Space - jump" type="Sprite" parent="WASD sprites"]
+position = Vector2( 168, 207 )
+scale = Vector2( 0.699759, 0.575397 )
+texture = ExtResource( 3 )
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="WASD sprites"]
+margin_left = 312.0
+margin_top = 196.0
+margin_right = 574.0
+margin_bottom = 242.0
+custom_fonts/normal_font = SubResource( 1 )
+text = "-	Jump/Double Jump "
+
+[node name="Right click" type="Sprite" parent="WASD sprites"]
+position = Vector2( 917.545, 69.3001 )
+scale = Vector2( 0.0568471, 0.0350426 )
+texture = ExtResource( 15 )
+offset = Vector2( -217, -381 )
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="WASD sprites"]
+margin_left = 674.0
+margin_top = 107.0
+margin_right = 815.0
+margin_bottom = 156.0
+custom_fonts/normal_font = SubResource( 1 )
+text = "Left click to swing sword"
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="WASD sprites"]
+margin_left = 834.0
+margin_top = 108.0
+margin_right = 975.0
+margin_bottom = 157.0
+custom_fonts/normal_font = SubResource( 1 )
+text = "Right click to shoot"
+
+[node name="Left click" type="Sprite" parent="WASD sprites"]
+position = Vector2( 733, 69 )
+scale = Vector2( -0.0559552, 0.0335878 )
+texture = ExtResource( 15 )
+offset = Vector2( -217, -381 )
+
+[node name="item sprites" type="Node" parent="."]
+
+[node name="boot item" type="Sprite" parent="item sprites"]
+position = Vector2( 257, 398 )
+scale = Vector2( 2.05225, 2.03215 )
+texture = ExtResource( 11 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="item sprites"]
+margin_left = 297.0
+margin_top = 380.0
+margin_right = 543.0
+margin_bottom = 422.0
+custom_fonts/normal_font = SubResource( 2 )
+text = "Pick up the boot to enable double jump"
+
+[node name="feather item" type="Sprite" parent="item sprites"]
+position = Vector2( 254, 471 )
+scale = Vector2( 1.86731, 1.68019 )
+texture = ExtResource( 10 )
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="item sprites"]
+margin_left = 300.0
+margin_top = 455.0
+margin_right = 567.0
+margin_bottom = 501.0
+custom_fonts/normal_font = SubResource( 2 )
+text = "Pick up the feather  to enable dash"
+
+[node name="gold item" type="Sprite" parent="item sprites"]
+position = Vector2( 257, 551 )
+scale = Vector2( 1.93065, 1.93286 )
+texture = ExtResource( 12 )
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="item sprites"]
+margin_left = 300.0
+margin_top = 531.0
+margin_right = 703.0
+margin_bottom = 596.0
+custom_fonts/normal_font = SubResource( 2 )
+text = "Collect as many coins as you can, bigger coins = more $"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -18.0
+autoplay = true
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 9.0
+margin_top = 5.0
+margin_right = 521.0
+margin_bottom = 517.0
+rect_scale = Vector2( 0.19204, 0.122588 )
+texture_normal = ExtResource( 13 )
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
