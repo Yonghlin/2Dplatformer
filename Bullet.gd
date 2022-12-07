@@ -18,4 +18,4 @@ func _on_Bullet_body_entered(body):
 		$ThudSound.play()
 		direction = 0
 		yield($ThudSound, "finished") # wait for sound to finish before despawning
-		queue_free()
+		queue_free() # despawn

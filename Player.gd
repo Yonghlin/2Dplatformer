@@ -39,16 +39,16 @@ const MOVESPEED_DEFAULT			= 400		# player's default movespeed
 const SPEEDBOOST_MULT			= 1.5		# `movespeed` *= this when player has speedboost powerup
 
 const JUMPIMPULSE				= -1100		# added to player's y-vel on successful jump
-const INAIR_SPEED				= 0.5		# x-vel is multiplied by this when in midair
+const INAIR_SPEED				= 0.85		# x-vel is multiplied by this when in midair
 const WATER_SPEED				= 0.75		# y-vel is multiplied by this when "underwater"
 
-const DASHIMPULSE 				= 1490 		# added to player's x-vel on successful dash
+const DASHIMPULSE 				= 1300 		# added to player's x-vel on successful dash
 const DASH_PARTICLE_VELOCITY	= -8 		# reflects which direction player is facing
 const DASH_CD					= 0.6		# cooldown in seconds between dashes
 const DASH_DECEL				= 70		# how fast dash decelerates each frame
 const RESPAWN_CD				= 1.5		# cooldown in seconds to respawn
 const ATTACK_CD					= 0.25		# cooldown in seconds to attack
-const SHOOT_CD					= 0.27			# cooldown in seconds to shoot gun
+const SHOOT_CD					= 0.3			# cooldown in seconds to shoot gun
 
 const MAX_HP					= 100		# self-explanatory
 const DEFAULT_AMMO				= 5
@@ -138,6 +138,7 @@ func end_attack():
 
 func end_shoot():
 	shooting = false
+	$Sound/ReloadSound.play()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -167,6 +168,15 @@ func _ready():
 	shoot_timer.set_one_shot(true)
 	self.add_child(shoot_timer)
 	
+	
+	# temporary until John gets save system working
+	if get_tree().current_scene.filename == "res://Level2.tscn":
+		can_double_jump = true
+	
+	if get_tree().current_scene.filename == "res://Level3.tscn":
+		can_double_jump = true
+		can_dash = true
+	
 func _process(_delta):
 	pass
 
@@ -190,22 +200,7 @@ func _physics_process(_delta):
 			has_double_jumped = true
 		
 	# mid-air conditions
-	if not is_on_floor():
-		if not attacking and not shooting:
-			if velocity.y <= 0:
-				_sprite.play("jump")
-			if velocity.y > 0:
-				_sprite.play("fall")
-		
-		# dashing disables gravity when active
-		if not dashing:
-			velocity.x *= INAIR_SPEED
-			velocity.y += GRAVITY
-			
-			# If the spacebar is released mid-jump, kill all vertical velocity
-			# by 90%. This gives the illusion of a "shorter" jump.
-			if Input.is_action_just_released("move_jump") and velocity.y < 0:
-				velocity.y *= 0.1
+	
 
 	# Successful dash conditions.
 	if Input.is_action_just_pressed("move_dash") and can_dash and not dead and not attacking and not shooting:
@@ -266,11 +261,30 @@ func _physics_process(_delta):
 		velocity.x = 0
 		_sprite.play("idle")
 	
+	
+	if not is_on_floor():
+		if not attacking and not shooting:
+			if velocity.y <= 0:
+				_sprite.play("jump")
+			if velocity.y > 0:
+				_sprite.play("fall")
+		
+		# dashing disables gravity when active
+		if not dashing:
+			velocity.x *= INAIR_SPEED
+			velocity.y += GRAVITY
+			
+			# If the spacebar is released mid-jump, kill all vertical velocity
+			# by 90%. This gives the illusion of a "shorter" jump.
+			if Input.is_action_just_released("move_jump") and velocity.y < 0:
+				velocity.y *= 0.1
+				
+				
 	# attacking conditions
-	if Input.is_action_just_pressed("attack") and not dashing and not attacking and not shooting:
+	if Input.is_action_just_pressed("attack") and not dashing and not attacking and not shooting and not dead:
 		start_attack()
 		
-	if Input.is_action_just_pressed("shoot") and not dashing and not attacking and not shooting:
+	if Input.is_action_just_pressed("shoot") and not dashing and not attacking and not shooting and not dead:
 		start_shoot()
 		
 	# runs if player is currently dashing, whether or not on ground

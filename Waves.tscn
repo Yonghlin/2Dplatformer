@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/sound/waves.wav" type="AudioStream" id=1]
+[ext_resource path="res://Waves.gd" type="Script" id=2]
+
+[node name="Waves" type="AudioStreamPlayer2D"]
+position = Vector2( 1705.13, 1269.8 )
+scale = Vector2( 4, 4 )
+stream = ExtResource( 1 )
+volume_db = 3.208
+autoplay = true
+attenuation = 4.14105
+script = ExtResource( 2 )
