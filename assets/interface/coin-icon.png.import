@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/label_HP.png-12ec98c53015805a47a2a7f6f6b00d11.stex"
+path="res://.import/coin-icon.png-716136f74eeca782aff8175940e9d518.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/interface/Bar_assets/label_HP.png"
-dest_files=[ "res://.import/label_HP.png-12ec98c53015805a47a2a7f6f6b00d11.stex" ]
+source_file="res://assets/interface/coin-icon.png"
+dest_files=[ "res://.import/coin-icon.png-716136f74eeca782aff8175940e9d518.stex" ]
 
 [params]
 

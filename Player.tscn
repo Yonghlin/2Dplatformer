@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://Health.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/player/sound/sword-slash.wav" type="AudioStream" id=11]
 [ext_resource path="res://assets/player/sound/click.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/interface/Interface.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/player/sound/reload.wav" type="AudioStream" id=14]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 7 )
@@ -20,19 +21,19 @@ region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 7 )
-region = Rect2( 0, 96, 32, 32 )
+region = Rect2( 0, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 7 )
-region = Rect2( 32, 96, 32, 32 )
+region = Rect2( 32, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 7 )
-region = Rect2( 64, 96, 32, 32 )
+region = Rect2( 64, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 7 )
-region = Rect2( 96, 96, 32, 32 )
+region = Rect2( 96, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 7 )
@@ -40,19 +41,19 @@ region = Rect2( 0, 64, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 7 )
-region = Rect2( 0, 32, 32, 32 )
+region = Rect2( 0, 96, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 7 )
-region = Rect2( 32, 32, 32, 32 )
+region = Rect2( 32, 96, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 7 )
-region = Rect2( 64, 32, 32, 32 )
+region = Rect2( 64, 96, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 7 )
-region = Rect2( 96, 32, 32, 32 )
+region = Rect2( 96, 96, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 7 )
@@ -102,9 +103,9 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
-"loop": false,
-"name": "attack",
-"speed": 20.0
+"loop": true,
+"name": "dash",
+"speed": 25.0
 }, {
 "frames": [ SubResource( 6 ) ],
 "loop": false,
@@ -112,9 +113,9 @@ animations = [ {
 "speed": 1.0
 }, {
 "frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
-"loop": true,
-"name": "dash",
-"speed": 25.0
+"loop": false,
+"name": "attack",
+"speed": 20.0
 }, {
 "frames": [ SubResource( 11 ), SubResource( 12 ) ],
 "loop": false,
@@ -265,7 +266,9 @@ scale = Vector2( 4, 4 )
 frames = SubResource( 21 )
 animation = "shoot"
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="." groups=[
+"Sword",
+]]
 position = Vector2( 38, 0 )
 
 [node name="AttackAreaHitbox" type="CollisionShape2D" parent="AttackArea"]
@@ -278,7 +281,9 @@ position = Vector2( 0.0217667, 32.3574 )
 scale = Vector2( 1.24312, 66.0882 )
 texture = ExtResource( 4 )
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." groups=[
+"Player",
+]]
 position = Vector2( -0.329163, -0.375854 )
 shape = SubResource( 23 )
 
@@ -295,7 +300,7 @@ zoom = Vector2( 1.2, 1.2 )
 process_mode = 0
 limit_left = -260
 limit_top = -300
-limit_right = 3480
+limit_right = 6000
 limit_bottom = 1020
 limit_smoothed = true
 smoothing_enabled = true
@@ -371,7 +376,11 @@ stream = ExtResource( 10 )
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="Sound"]
 stream = ExtResource( 12 )
-volume_db = -5.0
+volume_db = -15.0
+
+[node name="ReloadSound" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 14 )
+volume_db = -8.0
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 2 )
