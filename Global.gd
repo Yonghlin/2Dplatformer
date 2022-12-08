@@ -7,5 +7,6 @@ var hud
 func lose_life():
 	lives -= 1
 	hud.load_hearts()
-	#if lives <= 0:
-		#get_tree().change_scene() GAME OVER SCREEEN
+	if lives <= 0:
+		get_tree().change_scene("res://Restart Screen.tscn") #GAME OVER SCREEEN
+		lives = max_lives

@@ -15,7 +15,7 @@ font_data = ExtResource( 6 )
 size = 54
 font_data = ExtResource( 6 )
 
-[node name="Control" type="Control"]
+[node name="Main Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
@@ -51,9 +51,9 @@ flat = true
 
 [node name="Quit Game Button" type="Button" parent="."]
 margin_left = 463.0
-margin_top = 145.0
+margin_top = 146.0
 margin_right = 591.0
-margin_bottom = 216.0
+margin_bottom = 217.0
 custom_fonts/font = SubResource( 1 )
 text = "Quit"
 flat = true
@@ -74,6 +74,7 @@ margin_right = 678.0
 margin_bottom = 111.0
 custom_fonts/font = SubResource( 2 )
 text = "The Pirate Game"
+
 [connection signal="pressed" from="Start Game Button" to="." method="_on_Start_Game_Button_pressed"]
 [connection signal="pressed" from="Load Button" to="." method="_on_Load_Button_pressed"]
 [connection signal="pressed" from="Quit Game Button" to="." method="_on_Quit_Game_Button_pressed"]
