@@ -146,7 +146,7 @@ func _ready():
 	respawn()
 	score = 0
 	_sprite.play("idle")
-	_attack_area.visible = false
+	#_attack_area.visible = false
 	
 	dash_timer.connect("timeout", self, "enable_dash")
 	dash_timer.wait_time = DASH_CD

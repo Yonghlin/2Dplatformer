@@ -5,13 +5,13 @@
 [ext_resource path="res://Main Menu.gd" type="Script" id=5]
 [ext_resource path="res://assets/ConnectionII.otf" type="DynamicFontData" id=6]
 
-[sub_resource type="DynamicFont" id=65]
+[sub_resource type="DynamicFont" id=1]
 size = 45
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=66]
+[sub_resource type="DynamicFont" id=2]
 size = 54
 font_data = ExtResource( 6 )
 
@@ -36,7 +36,7 @@ margin_left = 242.0
 margin_top = 148.0
 margin_right = 414.0
 margin_bottom = 219.0
-custom_fonts/font = SubResource( 65 )
+custom_fonts/font = SubResource( 1 )
 text = "Start"
 flat = true
 
@@ -45,7 +45,7 @@ margin_left = 241.0
 margin_top = 440.0
 margin_right = 413.0
 margin_bottom = 511.0
-custom_fonts/font = SubResource( 65 )
+custom_fonts/font = SubResource( 1 )
 text = "Load"
 flat = true
 
@@ -54,7 +54,7 @@ margin_left = 463.0
 margin_top = 145.0
 margin_right = 591.0
 margin_bottom = 216.0
-custom_fonts/font = SubResource( 65 )
+custom_fonts/font = SubResource( 1 )
 text = "Quit"
 flat = true
 
@@ -63,7 +63,7 @@ margin_left = 473.0
 margin_top = 444.0
 margin_right = 645.0
 margin_bottom = 515.0
-custom_fonts/font = SubResource( 65 )
+custom_fonts/font = SubResource( 1 )
 text = "Help"
 flat = true
 
@@ -72,9 +72,8 @@ margin_left = 209.0
 margin_top = 42.0
 margin_right = 678.0
 margin_bottom = 111.0
-custom_fonts/font = SubResource( 66 )
+custom_fonts/font = SubResource( 2 )
 text = "The Pirate Game"
-
 [connection signal="pressed" from="Start Game Button" to="." method="_on_Start_Game_Button_pressed"]
 [connection signal="pressed" from="Load Button" to="." method="_on_Load_Button_pressed"]
 [connection signal="pressed" from="Quit Game Button" to="." method="_on_Quit_Game_Button_pressed"]
