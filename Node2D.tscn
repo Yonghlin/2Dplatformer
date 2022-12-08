@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=2]
+[gd_scene load_steps=85 format=2]
 
 [ext_resource path="res://assets/player/pirate_animations2.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
@@ -18,9 +18,11 @@
 [ext_resource path="res://Health.gd" type="Script" id=16]
 [ext_resource path="res://assets/interface/Interface.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Coin.tscn" type="PackedScene" id=18]
-[ext_resource path="res://DashBar.gd" type="Script" id=19]
 [ext_resource path="res://BigCoin.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/sound/flap2.wav" type="AudioStream" id=21]
+[ext_resource path="res://SkeletonEnemy.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Bird.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Bird.gd" type="Script" id=24]
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
@@ -1739,9 +1741,9 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Player" type="KinematicBody2D" parent="."]
+[node name="Player" type="KinematicBody2D" parent="." groups=["Player"]]
 light_mask = 2
-position = Vector2( 585.117, 407.026 )
+position = Vector2( 301, 388 )
 z_index = 1
 script = ExtResource( 2 )
 
@@ -1756,13 +1758,6 @@ position = Vector2( -0.329163, -0.375854 )
 shape = SubResource( 18 )
 
 [node name="Interface" parent="Player" instance=ExtResource( 17 )]
-margin_left = -97.117
-margin_top = -112.026
-margin_right = 276.883
-margin_bottom = 48.974
-
-[node name="DashBar" parent="Player/Interface/BarContainers" index="1"]
-script = ExtResource( 19 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( 1.65405, 11.042 )
@@ -1948,6 +1943,13 @@ position = Vector2( 327.75, -1.5 )
 
 [node name="BigCoin2" parent="World/Items" instance=ExtResource( 20 )]
 position = Vector2( 702.75, 41.25 )
+
+[node name="SkeletonEnemy" parent="." instance=ExtResource( 22 )]
+position = Vector2( 521, 390 )
+
+[node name="Bird" parent="." instance=ExtResource( 23 )]
+position = Vector2( 245, 403 )
+script = ExtResource( 24 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )

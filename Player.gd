@@ -82,7 +82,7 @@ var shoot_timer					= Timer.new()		# shooting cooldown timer
 func enable_dash():
 	# @Yong - GUI update should go here
 	can_dash = true
-	$Interface/BarContainers/DashBar/DashProgress.value = 100
+	$Interface/CanvasLayer/DashProgress.value = 100
 
 func respawn():
 	facing_right = true
@@ -226,7 +226,7 @@ func _physics_process(_delta):
 			velocity.x = -DASHIMPULSE
 		
 		can_dash = false
-		$Interface/BarContainers/DashBar/DashProgress.value = 0
+		$Interface/CanvasLayer/DashProgress.value = 0
 		dash_timer.start()
 	
 	# There's probably a way to do this next part without needing 2 nearly
@@ -316,7 +316,7 @@ func _physics_process(_delta):
 			_splash_particle.restart()
 			_splash_sound.play()
 			dead = true
-			$Interface/BarContainers/LifeBar/LifeProgress.value = 0
+			Global.lose_life()
 			respawn_timer.start()
 		velocity.y *= WATER_SPEED
 		
@@ -346,8 +346,8 @@ func boot_entered():
 
 func coin_entered():
 	score = score + 1
-	$Interface/CoinCounter/Number.text = str(score)
+	$Interface/CanvasLayer/CoinCounter/Number.text = str(score)
 
 func big_coin_entered():
 	score = score + 5
-	$Interface/CoinCounter/Number.text = str(score)
+	$Interface/CanvasLayer/CoinCounter/Number.text = str(score)
