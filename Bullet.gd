@@ -15,6 +15,8 @@ func _process(delta):
 	
 func _on_Bullet_body_entered(body):
 	if not body.is_in_group("Player"):
+		if body.has_method("hit"):
+			body.hit()
 		$ThudSound.play()
 		direction = 0
 		yield($ThudSound, "finished") # wait for sound to finish before despawning

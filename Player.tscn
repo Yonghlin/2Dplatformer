@@ -381,4 +381,5 @@ volume_db = -8.0
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 2 )
 
+[connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
 [connection signal="health_changed" from="Health" to="." method="_on_Health_health_changed"]

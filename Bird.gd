@@ -12,8 +12,8 @@ func _physics_process(delta):
 		return
 		
 	var targetpos = navigation_agent.get_next_location()
-	var direction = global_position.direction_to(targetpos)
 	
+	var direction = global_position.direction_to(targetpos)
 	if direction.x <= 0:
 		get_node("AnimatedSprite").set_flip_h(true)
 	elif direction.x > 0:

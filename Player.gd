@@ -102,6 +102,7 @@ func jump():
 func start_attack():
 	attacking = true
 	
+	_attack_area.monitoring = true
 	if not facing_right:
 		_attack_area.position.x = -38
 	else:
@@ -135,6 +136,7 @@ func start_shoot():
 func end_attack():
 	attacking = false
 	_attack_area.visible = false
+	_attack_area.monitoring = false
 
 func end_shoot():
 	shooting = false
@@ -351,3 +353,9 @@ func coin_entered():
 func big_coin_entered():
 	score = score + 5
 	$Interface/CanvasLayer/CoinCounter/Number.text = str(score)
+
+
+func _on_AttackArea_body_entered(body):
+	if body.is_in_group("Enemy"):
+		if body.has_method("hit"):
+			body.hit()

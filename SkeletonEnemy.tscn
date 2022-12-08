@@ -178,27 +178,24 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 30 )
 animation = "attack"
-frame = 12
+frame = 5
 playing = true
 
 [node name="Body" type="Area2D" parent="."]
-scale = Vector2( 1, 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Body"]
 position = Vector2( -2, -0.5 )
-scale = Vector2( 1, 1 )
+scale = Vector2( 1.17971, 1.05849 )
 shape = SubResource( 31 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -2, -0.5 )
-scale = Vector2( 1, 1 )
+scale = Vector2( 0.953214, 0.982763 )
 shape = SubResource( 31 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2( 18.4, -28 )
 enabled = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 collision_layer = 0
