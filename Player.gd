@@ -92,7 +92,7 @@ func respawn():
 	dead = false
 	velocity.y = 0
 	ammo = DEFAULT_AMMO
-	$Interface/BarContainers/LifeBar/LifeProgress.value = 100
+	#$Interface/BarContainers/LifeBar/LifeProgress.value = 100
 	
 func jump():
 	_jump_particle.restart()
@@ -339,7 +339,7 @@ func feather_entered():
 	can_double_jump = true
 
 func boot_entered():
-	$Interface/BarContainers/DashBar/DashProgress.value = 100
+	$Interface/BarContainers/DashBar/DashProgress.value = 100 
 	_jump_particle.restart()
 	_dash_sound.play()
 	can_dash = true

@@ -4,8 +4,6 @@ extends Control
 func _ready():
 	 globals.currentStage = 0
 
-
-
 func _on_Start_Game_Button_pressed():
 	get_tree().change_scene("res://Level1.tscn")
 
