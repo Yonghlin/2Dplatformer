@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/chest.png" type="Texture" id=1]
+[ext_resource path="res://Chest.gd" type="Script" id=2]
+[ext_resource path="res://assets/sound/chest.wav" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 11.9929, 11.4869 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 24, 0, 24, 24 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "open",
+"speed": 5.0
+} ]
+
+[node name="Chest" type="Area2D"]
+scale = Vector2( 3, 3 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 0.550594 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 4 )
+animation = "open"
+
+[node name="ChestSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = 3.0
+[connection signal="body_entered" from="." to="." method="_on_Chest_body_entered"]

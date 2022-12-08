@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/world/Ocean.png" type="Texture" id=1]
+
+[node name="Background" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.5, 0.5 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxLayer"]
+modulate = Color( 0.741176, 0.87451, 0.972549, 1 )
+light_mask = 2
+position = Vector2( 946.801, 90.5855 )
+scale = Vector2( 9.54415, 9.54414 )
+z_index = -1
+texture = ExtResource( 1 )
