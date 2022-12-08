@@ -339,7 +339,7 @@ func feather_entered():
 	can_double_jump = true
 
 func boot_entered():
-	$Interface/BarContainers/DashBar/DashProgress.value = 100 
+	$Interface/CanvasLayer/DashProgress.value = 100 
 	_jump_particle.restart()
 	_dash_sound.play()
 	can_dash = true

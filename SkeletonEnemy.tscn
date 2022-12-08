@@ -178,11 +178,20 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 30 )
 animation = "attack"
-frame = 8
+frame = 12
 playing = true
+
+[node name="Body" type="Area2D" parent="."]
+scale = Vector2( 1, 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Body"]
+position = Vector2( -2, -0.5 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 31 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -2, -0.5 )
+scale = Vector2( 1, 1 )
 shape = SubResource( 31 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
@@ -206,5 +215,6 @@ monitorable = false
 position = Vector2( 19.2, -2.8 )
 shape = SubResource( 33 )
 
+[connection signal="body_entered" from="Body" to="." method="_on_Body_body_entered"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
