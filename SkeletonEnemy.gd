@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const ATTACK_CD = 1
+const ATTACK_CD = 1000
 
 var gravity = 10
 var speed = 50
@@ -12,14 +12,17 @@ var facing_right = true
 
 func start_attack():
 	attacking = true
-	$AttackArea.visible = true
 	
+	$AttackArea.visible = true
+	$AttackArea.monitoring = true
 	$AnimatedSprite.play("attack")
 	attack_timer.start()
 
 func end_attack():
 	attacking = false
 	$AttackArea.visible = false
+	$AttackArea.monitoring = false
+	$AnimatedSprite.play("walk")
 
 func _ready():
 	$AnimatedSprite.play("walk")
@@ -49,6 +52,9 @@ func detect_turn_around():
 		facing_right = ! facing_right
 		scale.x = -scale.x
 
+func hit():
+	queue_free()
+
 func _on_PlayerDetector_body_entered(body):
 	if body.is_in_group("Player"):
 		start_attack()
@@ -56,4 +62,3 @@ func _on_PlayerDetector_body_entered(body):
 func _on_AttackArea_body_entered(body):
 	if body.is_in_group("Player"):
 		Global.lose_life()
-		get_tree().reload_current_scene()

@@ -998,10 +998,9 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource( 1 )]
-
-[node name="SkeletonEnemy" parent="." instance=ExtResource( 6 )]
-z_index = 1
+[node name="Player" parent="." groups=[
+"Player",
+] instance=ExtResource( 1 )]
 
 [node name="World" type="Node2D" parent="."]
 position = Vector2( -2, 0 )
@@ -1067,8 +1066,16 @@ position = Vector2( 356.781, 68.7085 )
 position = Vector2( 702.75, 41.25 )
 
 [node name="Music" parent="." instance=ExtResource( 5 )]
+autoplay = true
 
 [node name="Waves" parent="." instance=ExtResource( 4 )]
 
 [node name="Chest" parent="." instance=ExtResource( 3 )]
 position = Vector2( 5834.68, 411.852 )
+
+[node name="SkeletonEnemy" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1200, 500 )
+z_index = 1
+
+[node name="SkeletonEnemy2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 5000, 700 )

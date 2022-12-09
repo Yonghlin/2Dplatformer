@@ -102,11 +102,12 @@ func jump():
 func start_attack():
 	attacking = true
 	
+	_attack_area.monitoring = true
 	if not facing_right:
 		_attack_area.position.x = -38
 	else:
 		_attack_area.position.x = 38
-	_attack_area.visible = true
+	_attack_area.visible = false
 	
 	_sprite.play("attack")
 	_sword_slash_sound.play()
@@ -119,7 +120,8 @@ func start_shoot():
 		_sprite.play("shoot")
 		_gun_sound.play()
 		shoot_timer.start()
-		ammo -= 1
+		# infinite ammo for now
+		# ammo -= 1
 		
 		var bullet = bullet_path.instance()
 		get_parent().add_child(bullet)
@@ -135,6 +137,7 @@ func start_shoot():
 func end_attack():
 	attacking = false
 	_attack_area.visible = false
+	_attack_area.monitoring = false
 
 func end_shoot():
 	shooting = false
@@ -146,7 +149,7 @@ func _ready():
 	respawn()
 	score = 0
 	_sprite.play("idle")
-	#_attack_area.visible = false
+	_attack_area.visible = false
 	
 	dash_timer.connect("timeout", self, "enable_dash")
 	dash_timer.wait_time = DASH_CD
@@ -339,7 +342,7 @@ func feather_entered():
 	can_double_jump = true
 
 func boot_entered():
-	$Interface/BarContainers/DashBar/DashProgress.value = 100 
+	$Interface/CanvasLayer/DashProgress.value = 100 
 	_jump_particle.restart()
 	_dash_sound.play()
 	can_dash = true
@@ -351,3 +354,8 @@ func coin_entered():
 func big_coin_entered():
 	score = score + 5
 	$Interface/CanvasLayer/CoinCounter/Number.text = str(score)
+
+func _on_AttackArea_body_entered(body):
+	if body.is_in_group("Enemy"):
+		if body.has_method("hit"):
+			body.hit()
