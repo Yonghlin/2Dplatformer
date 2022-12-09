@@ -85,6 +85,7 @@ func enable_dash():
 	$Interface/CanvasLayer/DashProgress.value = 100
 
 func respawn():
+	_attack_area.visible = false
 	facing_right = true
 	_sprite.set_flip_h(false)
 	position.x = ORIGIN_X
@@ -100,9 +101,10 @@ func jump():
 	velocity.y = JUMPIMPULSE
 	
 func start_attack():
+	_attack_area.visible = true
 	attacking = true
-	
 	_attack_area.monitoring = true
+
 	if not facing_right:
 		_attack_area.position.x = -38
 	else:
@@ -149,7 +151,7 @@ func _ready():
 	respawn()
 	score = 0
 	_sprite.play("idle")
-	_attack_area.visible = false
+
 	
 	dash_timer.connect("timeout", self, "enable_dash")
 	dash_timer.wait_time = DASH_CD
@@ -356,6 +358,6 @@ func big_coin_entered():
 	$Interface/CanvasLayer/CoinCounter/Number.text = str(score)
 
 func _on_AttackArea_body_entered(body):
-	if body.is_in_group("Enemy"):
+	if body.is_in_group("Enemy") and attacking:
 		if body.has_method("hit"):
 			body.hit()
