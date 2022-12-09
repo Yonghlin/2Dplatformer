@@ -171,14 +171,14 @@ extents = Vector2( 13, 10.6 )
 [sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 12.4, 4.6 )
 
-[node name="SkeletonEnemy" type="KinematicBody2D"]
+[node name="SkeletonEnemy" type="KinematicBody2D" groups=["Enemy"]]
 scale = Vector2( 2.5, 2.5 )
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 30 )
 animation = "attack"
-frame = 5
+frame = 6
 playing = true
 
 [node name="Body" type="Area2D" parent="."]

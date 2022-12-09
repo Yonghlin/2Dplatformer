@@ -354,7 +354,6 @@ func big_coin_entered():
 	score = score + 5
 	$Interface/CanvasLayer/CoinCounter/Number.text = str(score)
 
-
 func _on_AttackArea_body_entered(body):
 	if body.is_in_group("Enemy"):
 		if body.has_method("hit"):
