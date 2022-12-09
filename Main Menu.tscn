@@ -41,10 +41,10 @@ text = "Start"
 flat = true
 
 [node name="Load Button" type="Button" parent="."]
-margin_left = 241.0
-margin_top = 440.0
-margin_right = 413.0
-margin_bottom = 511.0
+margin_left = 202.0
+margin_top = 439.0
+margin_right = 374.0
+margin_bottom = 510.0
 custom_fonts/font = SubResource( 1 )
 text = "Load"
 flat = true
@@ -59,12 +59,21 @@ text = "Quit"
 flat = true
 
 [node name="Help Button" type="Button" parent="."]
-margin_left = 473.0
-margin_top = 444.0
-margin_right = 645.0
-margin_bottom = 515.0
+margin_left = 552.0
+margin_top = 438.0
+margin_right = 724.0
+margin_bottom = 509.0
 custom_fonts/font = SubResource( 1 )
 text = "Help"
+flat = true
+
+[node name="Credit Button" type="Button" parent="."]
+margin_left = 386.0
+margin_top = 437.0
+margin_right = 558.0
+margin_bottom = 508.0
+custom_fonts/font = SubResource( 1 )
+text = "Credits"
 flat = true
 
 [node name="TextEdit" type="TextEdit" parent="."]
@@ -79,3 +88,4 @@ text = "The Pirate Game"
 [connection signal="pressed" from="Load Button" to="." method="_on_Load_Button_pressed"]
 [connection signal="pressed" from="Quit Game Button" to="." method="_on_Quit_Game_Button_pressed"]
 [connection signal="pressed" from="Help Button" to="." method="_on_Help_Button_pressed"]
+[connection signal="pressed" from="Credit Button" to="." method="_on_Credit_Button_pressed"]

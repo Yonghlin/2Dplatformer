@@ -22,3 +22,8 @@ func _on_Load_Button_pressed():
 func _on_Help_Button_pressed():
 	get_tree().change_scene("res://Help Screen.tscn")
 	Global.current_scene = 4
+
+
+func _on_Credit_Button_pressed():
+	get_tree().change_scene("res://Credit Scene.tscn")
+	Global.current_scene = 7
