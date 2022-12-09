@@ -24,6 +24,7 @@ script = ExtResource( 3 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
+volume_db = -8.0
 autoplay = true
 
 [node name="TextureRect" type="TextureRect" parent="."]

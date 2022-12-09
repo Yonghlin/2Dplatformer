@@ -14,9 +14,9 @@ Additionally, coins can be collected. Some of them require these moves to be unl
 
 - Large coins add 5 to the player's score.
 
-The larger bar shown above the player represents health, which is set to 0 once water is entered.
+The hearts in the top right represent hit points.
 
-The smaller bar represents whether or not the player can dash, which is connected to a 0.6 second timer.
+The bar below that represents the player's sprint ability.
 
 The coin with the number next to it represents the player's score.
 
@@ -30,6 +30,8 @@ A     | Move left          |
 S     | Move right         |
 Space | Jump / double-jump |
 Shift | Dash               |
+LMB   | Swing sword        |
+RMB   | Shoot              |
 
 # Development
 
