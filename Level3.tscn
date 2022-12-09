@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SkeletonEnemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Chest.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Waves.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Music.tscn" type="PackedScene" id=5]
@@ -1036,3 +1037,9 @@ autoplay = true
 
 [node name="Chest" parent="." instance=ExtResource( 3 )]
 position = Vector2( 4511.73, 411.914 )
+
+[node name="SkeletonEnemy" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1772.56, 656.14 )
+
+[node name="SkeletonEnemy2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2773.8, 461.854 )

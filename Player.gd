@@ -120,7 +120,8 @@ func start_shoot():
 		_sprite.play("shoot")
 		_gun_sound.play()
 		shoot_timer.start()
-		ammo -= 1
+		# infinite ammo for now
+		# ammo -= 1
 		
 		var bullet = bullet_path.instance()
 		get_parent().add_child(bullet)
