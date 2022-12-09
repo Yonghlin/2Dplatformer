@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Boot.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://BigCoin.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Coin.tscn" type="PackedScene" id=7]
 [ext_resource path="res://SkeletonEnemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Bird.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/world/sheet.png" type="Texture" id=11]
 [ext_resource path="res://Background.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Light.tscn" type="PackedScene" id=13]
@@ -968,11 +969,14 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 33/shapes = [  ]
 33/z_index = 0
 
+[sub_resource type="NavigationPolygon" id=17]
+vertices = PoolVector2Array( -90.642, 118.194, -213.368, 116.291, -213.368, 83.9448, 1694.12, 109.632, 1612.3, 105.826, 1361.14, -89.2037, 1638.94, -80.6414, 1724.56, -73.0305, 1718.86, 62.0634, 1713.15, 103.924, 24.4733, 96.3126, -214.32, 46.8415, -210.514, -60.6628, -189.584, -71.1278, -148.675, -75.8846, -20.241, -64.4683, 114.853, 56.3553, 1571.39, 106.778, 1519.07, 106.778, 1430.59, 106.778, 1370.66, 103.924, 1242.22, -94.912, 1299.3, 101.07, 1258.39, 93.4586, 1187.99, 68.7231, 1167.06, 51.5985, 1144.23, 22.1062, 1099.52, -117.745, 1102.37, -28.3162, 1074.78, -46.3922, 1036.73, -61.614, 933.027, -195.757, 1002.48, -65.4195, 960.617, -54.0031, 850.259, -210.027, 939.687, -14.9971, 679.964, -209.076, 927.319, 19.2521, 915.903, 61.1121, 894.021, 74.4313, 845.502, 82.0422, 779.857, 89.6531, 718.97, 98.2154, 506.816, -188.146, 671.402, 105.826, 600.049, 108.68, 262.315, -132.015, 483.031, 122, 427.852, 113.437, 363.159, 40.1821, 106.291, -104.426, 143.394, 41.1334, 213.795, 15.4466, 262.315, 1.17609, 308.932, 7.83565, 380.284, 89.6531 )
+polygons = [ PoolIntArray( 0, 1, 2 ), PoolIntArray( 3, 4, 5, 6, 7, 8, 9 ), PoolIntArray( 10, 0, 2, 11, 12, 13, 14, 15, 16 ), PoolIntArray( 5, 4, 17, 18 ), PoolIntArray( 5, 18, 19, 20 ), PoolIntArray( 21, 5, 20, 22, 23, 24, 25, 26 ), PoolIntArray( 27, 21, 26, 28 ), PoolIntArray( 27, 28, 29 ), PoolIntArray( 27, 29, 30, 31 ), PoolIntArray( 31, 30, 32 ), PoolIntArray( 31, 32, 33, 34 ), PoolIntArray( 34, 33, 35, 36 ), PoolIntArray( 36, 35, 37 ), PoolIntArray( 36, 37, 38, 39, 40, 41 ), PoolIntArray( 36, 41, 42, 43 ), PoolIntArray( 43, 42, 44, 45 ), PoolIntArray( 46, 43, 45, 47, 48, 49 ), PoolIntArray( 16, 15, 50, 51 ), PoolIntArray( 52, 51, 50, 46 ), PoolIntArray( 53, 52, 46 ), PoolIntArray( 54, 53, 46 ), PoolIntArray( 48, 55, 49 ), PoolIntArray( 46, 49, 54 ) ]
+outlines = [ PoolVector2Array( 1718.86, 62.0634, 1724.56, -73.0305, 1638.94, -80.6414, 1361.14, -89.2037, 1242.22, -94.912, 1099.52, -117.745, 933.027, -195.757, 850.259, -210.027, 679.964, -209.076, 506.816, -188.146, 262.315, -132.015, 106.291, -104.426, -20.241, -64.4683, -148.675, -75.8846, -189.584, -71.1278, -210.514, -60.6628, -214.32, 46.8415, -213.368, 83.9448, -213.368, 116.291, -90.642, 118.194, 24.4733, 96.3126, 114.853, 56.3553, 143.394, 41.1334, 213.795, 15.4466, 262.315, 1.17609, 308.932, 7.83565, 363.159, 40.1821, 380.284, 89.6531, 427.852, 113.437, 483.031, 122, 600.049, 108.68, 671.402, 105.826, 718.97, 98.2154, 779.857, 89.6531, 845.502, 82.0422, 894.021, 74.4313, 915.903, 61.1121, 927.319, 19.2521, 939.687, -14.9971, 960.617, -54.0031, 1002.48, -65.4195, 1036.73, -61.614, 1074.78, -46.3922, 1102.37, -28.3162, 1144.23, 22.1062, 1167.06, 51.5985, 1187.99, 68.7231, 1258.39, 93.4586, 1299.3, 101.07, 1370.66, 103.924, 1430.59, 106.778, 1519.07, 106.778, 1571.39, 106.778, 1612.3, 105.826, 1694.12, 109.632, 1713.15, 103.924 ) ]
+
 [node name="Node2D" type="Node2D"]
 
-[node name="Player" parent="." groups=[
-"Player",
-] instance=ExtResource( 1 )]
+[node name="Player" parent="." groups=["Player"] instance=ExtResource( 1 )]
 
 [node name="World" type="Node2D" parent="."]
 position = Vector2( -2, 0 )
@@ -1051,3 +1055,9 @@ position = Vector2( 1230.04, 520.997 )
 
 [node name="SkeletonEnemy2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 4168.58, 464.615 )
+
+[node name="Bird" parent="." instance=ExtResource( 9 )]
+position = Vector2( 406.124, 118.093 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Bird"]
+navpoly = SubResource( 17 )

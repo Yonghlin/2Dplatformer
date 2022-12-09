@@ -74,6 +74,7 @@ margin_right = 678.0
 margin_bottom = 111.0
 custom_fonts/font = SubResource( 2 )
 text = "The Pirate Game"
+
 [connection signal="pressed" from="Start Game Button" to="." method="_on_Start_Game_Button_pressed"]
 [connection signal="pressed" from="Load Button" to="." method="_on_Load_Button_pressed"]
 [connection signal="pressed" from="Quit Game Button" to="." method="_on_Quit_Game_Button_pressed"]
