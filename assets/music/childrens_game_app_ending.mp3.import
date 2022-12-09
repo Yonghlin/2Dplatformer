@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/childrens_game_app_ending.mp3-7d7ccbeee756978f4733382764a9a6ca.mp3str"
+
+[deps]
+
+source_file="res://assets/music/childrens_game_app_ending.mp3"
+dest_files=[ "res://.import/childrens_game_app_ending.mp3-7d7ccbeee756978f4733382764a9a6ca.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

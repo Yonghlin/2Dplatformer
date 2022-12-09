@@ -18,6 +18,13 @@ func _on_Chest_body_entered(body):
 		
 		if get_tree().current_scene.filename == "res://Level1.tscn":
 			get_tree().change_scene("res://Level2.tscn")
+			Global.current_scene = 2
 		
 		if get_tree().current_scene.filename == "res://Level2.tscn":
 			get_tree().change_scene("res://Level3.tscn")
+			Global.current_scene = 3
+		
+		if get_tree().current_scene.filename == "res://Level3.tscn":
+			get_tree().change_scene("res://End Scene.tscn")
+			Global.current_scene = 6
+			
