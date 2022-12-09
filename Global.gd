@@ -1,5 +1,6 @@
 extends Node
 
+var current_scene = 0
 var max_lives = 3
 var lives = max_lives
 var hud
