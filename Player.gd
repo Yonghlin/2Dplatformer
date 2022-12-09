@@ -107,7 +107,7 @@ func start_attack():
 		_attack_area.position.x = -38
 	else:
 		_attack_area.position.x = 38
-	_attack_area.visible = true
+	_attack_area.visible = false
 	
 	_sprite.play("attack")
 	_sword_slash_sound.play()
@@ -148,7 +148,7 @@ func _ready():
 	respawn()
 	score = 0
 	_sprite.play("idle")
-	#_attack_area.visible = false
+	_attack_area.visible = false
 	
 	dash_timer.connect("timeout", self, "enable_dash")
 	dash_timer.wait_time = DASH_CD
