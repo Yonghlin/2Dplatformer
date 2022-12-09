@@ -4,9 +4,9 @@ This game is about a pirate that just wants to unlock some cool moves. He's stuc
 
 The gameplay is relatively simple: the player just has to move to the right and collect two items that unlock new moves.
 
-- Collecting the boots unlocks the "dash" move.
-
 - Collecting the feather unlocks double-jumping.
+
+- Collecting the boots unlocks the "dash" move.
 
 Additionally, coins can be collected. Some of them require these moves to be unlocked.
 
@@ -19,6 +19,10 @@ The hearts in the top right represent hit points.
 The bar below that represents the player's sprint ability.
 
 The coin with the number next to it represents the player's score.
+
+The player has unlimited bullets and a sword that they can use to fight enemies. 
+
+Collecting the chests allows the player to advance to the next level.
 
 Unfortunately, the pirate never learns how to swim because he's not very smart. He's still stuck, but at least now he can impress the ladies.
 
