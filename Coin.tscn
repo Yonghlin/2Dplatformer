@@ -81,4 +81,5 @@ animation = "spin"
 
 [node name="PickupSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+
 [connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]
