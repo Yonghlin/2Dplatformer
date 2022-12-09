@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/music/childrens_game_app_ending.mp3" type="AudioStream" id=1]
 [ext_resource path="res://assets/game background.png" type="Texture" id=2]
 [ext_resource path="res://End Scene.gd" type="Script" id=3]
 [ext_resource path="res://assets/ConnectionII.otf" type="DynamicFontData" id=4]
@@ -21,9 +20,11 @@ font_data = ExtResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
 autoplay = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -48,5 +49,4 @@ margin_right = 670.0
 margin_bottom = 173.0
 custom_fonts/normal_font = SubResource( 2 )
 text = "You Win!!!"
-
 [connection signal="pressed" from="Back to Main" to="." method="_on_Back_to_Main_pressed"]
